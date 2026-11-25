@@ -4,8 +4,14 @@
 
 ### Key Additions
 - **Graphics & Post-Processing:** Dynamic lighting, water reflections, bloom, and screen-space shader effects (low-HP grain, distortion, chromatic aberration).
+- 
+  <img width="899" height="595" alt="photo_2026-11-25_22-29-54" src="https://github.com/user-attachments/assets/3bea7f1e-5a39-49ba-b912-d626d759f03c" />
+
 - **Audio & Sound Design:** Spatial audio (adapted from [Warped Pixel Dungeon](https://github.com/GabriWar/warpedpd)) and reworked sound effects.
 - **Online Leaderboards:** Player accounts, global rankings, and run statistics.
+
+<img width="1920" height="1080" alt="Screenshot_20261125_223057" src="https://github.com/user-attachments/assets/e260df99-e135-4729-97db-899aad8a3a61" />
+  
 - **Sandbox Mode:** Built-in testing and experimentation tools.
 
 ### Downloads
