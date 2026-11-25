@@ -1,0 +1,37 @@
+apply plugin: 'java-library'
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+java.sourceCompatibility = java.targetCompatibility = appJavaCompatibility
+
+dependencies {
+    api project(':SPD-classes')
+    implementation project(':services')
+    implementation 'com.esotericsoftware:kryonet:2.22.0-RC1'
+}
+
+def generatedOnlineDir = file("$buildDir/generated/sources/online")
+
+tasks.register('generateOnlineConfig') {
+    def localPropsFile = rootProject.file('local.properties')
+    inputs.file(localPropsFile).optional()
+    outputs.dir(generatedOnlineDir)
+
+    doLast {
+        def props = new Properties()
+        if (localPropsFile.exists()) {
+            localPropsFile.withInputStream { props.load(it) }
+        }
+        def apiUrl = props.getProperty('rpd.api.url', '')
+
+        def outDir = new File(generatedOnlineDir, 'com/shatteredpixel/shatteredpixeldungeon/online')
+        outDir.mkdirs()
+        new File(outDir, 'OnlineConfig.java').text = """package com.shatteredpixel.shatteredpixeldungeon.online;
+public final class OnlineConfig {
+    public static final String BASE_URL = "${apiUrl}";
+}
+"""
+    }
+}
+
+sourceSets.main.java.srcDir generatedOnlineDir
+compileJava.dependsOn generateOnlineConfig
